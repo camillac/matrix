@@ -25,16 +25,13 @@ int main() {
   counter = 0.0;
   struct matrix * b;
   b = new_matrix(4, 2);
-  for (int i = 0; i < b->cols; i++){
-    for (int j = 0; j < b->rows; j++){
-      b->m[j][i] = counter;
-      counter++;
-    }
-  }
+  add_point(b, 0, 1, 2);
+  add_point(b, 0, 1, 2);
+
 
   ident(edges);
   print_matrix(edges);
-  printf("\n");
+  printf("\nprinting b\n");
   print_matrix(b);
   printf("\n");
   matrix_mult(edges, b);

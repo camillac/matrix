@@ -57,17 +57,25 @@ a*b -> b
 void matrix_mult(struct matrix *a, struct matrix *b) {
   b->rows = a->rows;
 
+  // sets temp double 2D array
+  double ** tmp;
+  tmp = (double **)malloc(a->rows * sizeof(double *));
+  for (int i=0;i<a->rows;i++) {
+      tmp[i]=(double *)malloc(b->cols * sizeof(double));
+  }
 
   for (int a_row = 0; a_row < a->rows; a_row++){
     for (int b_col = 0; b_col < b-> cols; b_col++){
       // a->col = b->row by rule of matrix multiplication
-      b->m[a_row][b_col] = 0.0;
+      tmp[a_row][b_col] = 0.0;
       for (int a_col = 0; a_col < a->cols; a_col++){
-        b->m[a_row][b_col] += a->m[a_row][a_col] * b->m[a_col][b_col];
-        printf("a val = %f, b val = %f, new val = %f\n", a->m[a_row][a_col], b->m[a_col][b_col], b->m[a_row][b_col]);
+        tmp[a_row][b_col] += a->m[a_row][a_col] * b->m[a_col][b_col];
+        // printf("a val = %f, b val = %f, new val = %f\n", a->m[a_row][a_col], b->m[a_col][b_col], tmp[a_row][b_col]);
       }
     }
   }
+
+  b->m = tmp;
 
 }
 
