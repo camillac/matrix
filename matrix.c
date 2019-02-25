@@ -23,7 +23,7 @@ the template in the top comment
 */
 void print_matrix(struct matrix *m) {
   for (int i = 0; i < m->rows; i++){
-    for (int j = 0; j < m->cols; j++){
+    for (int j = 0; j < m->lastcol; j++){
       printf("%f  ", m->m[i][j]);
     }
     printf("\n");

@@ -17,7 +17,6 @@ if points is full, should call grow on points
 ====================*/
 void add_point( struct matrix * points, double x, double y, double z) {
 	if (points->cols == points->lastcol){
-		printf("COLS = LASTCOL\n");
 		grow_matrix(points, points->cols+1);
 	}
 	points->m[0][points->lastcol] = x;
@@ -39,7 +38,6 @@ void add_edge( struct matrix * points,
 	       double x0, double y0, double z0,
 	       double x1, double y1, double z1) {
  	while (points->cols < points->lastcol + 1){
-		printf("COLS = LASTCOL\n");
 		grow_matrix(points, points->cols+1);
 	}
 	add_point(points, x0, y0, z0);
@@ -56,6 +54,7 @@ to the screen
 ====================*/
 void draw_lines( struct matrix * points, screen s, color c) {
 	double x0, y0, x1, y1;
+	// double z0, z1;
 	for (int col = 0; col < points->cols; col+=2){
 		x0 = points->m[0][col];
 		y0 = points->m[1][col];
