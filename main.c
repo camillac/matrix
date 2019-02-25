@@ -27,7 +27,7 @@ int main() {
   b = new_matrix(4, 2);
   add_point(b, 0, 1, 2);
   add_point(b, 0, 1, 2);
-
+  add_point(b, 0, 1, 2);
 
   ident(edges);
   print_matrix(edges);

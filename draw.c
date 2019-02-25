@@ -20,10 +20,10 @@ void add_point( struct matrix * points, double x, double y, double z) {
 		printf("COLS = LASTCOL\n");
 		grow_matrix(points, points->cols+1);
 	}
-	points->m[0][points->cols] = x;
-	points->m[1][points->cols] = y;
-	points->m[2][points->cols] = z;
-	points->m[3][points->cols] = 1.0;
+	points->m[0][points->lastcol] = x;
+	points->m[1][points->lastcol] = y;
+	points->m[2][points->lastcol] = z;
+	points->m[3][points->lastcol] = 1.0;
 	points->lastcol += 1;
 
 	for (int row = 0; row < points->rows; row++){
@@ -41,6 +41,10 @@ should use add_point
 void add_edge( struct matrix * points,
 	       double x0, double y0, double z0,
 	       double x1, double y1, double z1) {
+ 	while (points->cols < points->lastcol + 1){
+		printf("COLS = LASTCOL\n");
+		grow_matrix(points, points->cols+1);
+	}
 	add_point(points, x0, y0, z0);
 	add_point(points, x1, y1, z1);
 }
