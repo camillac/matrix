@@ -26,9 +26,6 @@ void add_point( struct matrix * points, double x, double y, double z) {
 	points->m[3][points->lastcol] = 1.0;
 	points->lastcol += 1;
 
-	for (int row = 0; row < points->rows; row++){
-		printf("points: %lf\n", points->m[row][points->cols]);
-	}
 }
 
 /*======== void add_edge() ==========
@@ -58,6 +55,16 @@ Go through points 2 at a time and call draw_line to add that line
 to the screen
 ====================*/
 void draw_lines( struct matrix * points, screen s, color c) {
+	double x0, y0, x1, y1;
+	for (int col = 0; col < points->cols; col+=2){
+		x0 = points->m[0][col];
+		y0 = points->m[1][col];
+		// z0 = points->m[2][col];
+		x1 = points->m[0][col+1];
+		y1 = points->m[1][col+1];
+		// z1 = points->m[2][col+1];
+		draw_line(x0, y0, x1, y1, s, c);
+	}
 }
 
 

@@ -10,6 +10,7 @@
 int main() {
 
   screen s;
+  color c;
   struct matrix *edges;
 
   edges = new_matrix(4, 4);
@@ -25,9 +26,7 @@ int main() {
   counter = 0.0;
   struct matrix * b;
   b = new_matrix(4, 2);
-  add_point(b, 0, 1, 2);
-  add_point(b, 0, 1, 2);
-  add_point(b, 0, 1, 2);
+  add_edge( b, 0, 1, 2, 3, 4, 5);
 
   ident(edges);
   print_matrix(edges);
@@ -37,6 +36,12 @@ int main() {
   matrix_mult(edges, b);
   print_matrix(b);
   printf("\n");
+  c.red = 0;
+  c.green = 256;
+  c.blue = 0;
+  draw_lines(b, s, c);
+
+  save_extension(s, "matrix.png");
 
   free_matrix( edges );
 }
